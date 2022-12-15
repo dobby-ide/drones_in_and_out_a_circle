@@ -10,7 +10,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json());
-
+app.use(express.static('frontend/build'));
 app.get('/api', (req, res) => {
   request({ url: `${API_URL}` }, (error, response, body) => {
     if (!error && response.statusCode == 200) {
