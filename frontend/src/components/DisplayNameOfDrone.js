@@ -49,27 +49,26 @@ const DisplayNameOfDrone = ({ drones }) => {
     }
 
     setPilotAndDistance(ownersAndDrones);
-    utilityArray = [...ownersAndDrones];
 
     let dateNow = new Date();
     for (let i = 0; i < pilotAndDistance.length; i++) {
       let duration =
         (dateNow.getTime() - pilotAndDistance[i].time.getTime()) / 1000;
 
-      if (duration > 40) {
+      if (duration > 180) {
         console.log(duration);
-        utilityArray.splice(i, 1);
-        console.log(utilityArray);
+        ownersAndDrones.splice(i, 1);
+        console.log(ownersAndDrones);
       }
     }
-    setPilotAndDistance(utilityArray);
+    setPilotAndDistance(ownersAndDrones);
   };
 
   return (
     <div>
       {pilotAndDistance.map((drone) => {
         return (
-          <div>
+          <div key={drone.id}>
             {drone.ownerInfo.data.firstName} {drone.ownerInfo.data.lastName}{' '}
             {drone.time.getHours()}:{drone.time.getMinutes()} and closest
             distance is = {drone.distance}, email: {drone.ownerInfo.data.email},
