@@ -1,5 +1,4 @@
 import axios from 'axios';
-import TimeStamp from './TimeStamp';
 import { useEffect, useState } from 'react';
 let shiftedDrones = [];
 let ownersAndDrones = [];
@@ -78,7 +77,6 @@ const DisplayNameOfDrone = ({ drones }) => {
           </div>
         );
       })}
-      <TimeStamp illegalDrones={pilotAndDistance}></TimeStamp>
     </div>
   );
 };

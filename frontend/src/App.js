@@ -1,5 +1,5 @@
 import './App.css';
-import FetchDrones from '../components/FetchDrones';
+import FetchDrones from './components/FetchDrones';
 function App() {
   return (
     <div className="App">
