@@ -2,12 +2,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 let shiftedDrones = [];
 let ownersAndDrones = [];
-let utilityArray = [];
+
 const DisplayNameOfDrone = ({ drones }) => {
   const [pilotAndDistance, setPilotAndDistance] = useState([]);
   useEffect(() => {
     shiftingDrones();
-    // fetchAPI();
   }, [drones]);
   const shiftingDrones = () => {
     let maxValue = drones.length;

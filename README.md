@@ -5,7 +5,10 @@
 ![drones flying over a protected area](https://assignments.reaktor.com/birdnest/img/birdnest01.webp
 )
 
-
+## Content
+The application uses a frontend that fetches data on an endpoint: in return the server connects to a specific endpoint where the data is retrieved (updating xml snapshot of active drones on an area).
+The frontend calculates when the drones are inside a specified radius (100m) circle (the nest..) in the middle of the square.
+The application do some more fetching to find out who are the owners of the drones flying inside the circle and displays data accordingly, data persists for 10 minutes.
 
 ## installed dependencies:
 ***

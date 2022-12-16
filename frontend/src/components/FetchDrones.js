@@ -18,10 +18,6 @@ const FetchDrones = () => {
       'Content-Type': 'application/xml; charset=utf-8',
     });
     const parsedData = await new XMLParser().parseFromString(data.data);
-
-    //setDroneData(parsedData.children[1].children);
-    //analize which drone is inside the circle radius
-    //loops in the array of drones ==> parsedData.children[1].children[maxlength]
     calculateDistance(
       parsedData.children[1].children.length,
       parsedData.children[1].children
@@ -48,22 +44,16 @@ const FetchDrones = () => {
             idOfDrone: droneData[i].children[0].value,
             distance: Math.round(distance) / 100,
           });
-          //console.log('too close', illegalDroneNames);
         }
       }
     }
 
     setIllegalDrones(illegalDroneNames);
-    //console.log(illegalDroneNames);
   };
 
   return (
     <div>
-      {/* {illegalDrones.map((drone) => {
-        return <h1>{drone}</h1>;
-      })} */}
       <DisplayNameOfDrone drones={illegalDrones}></DisplayNameOfDrone>
-      <h2></h2>
     </div>
   );
 };
