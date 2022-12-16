@@ -3,26 +3,30 @@ import axios from 'axios';
 import XMLParser from 'react-xml-parser';
 import DisplayNameOfDrone from './DisplayNameOfDrone';
 const FetchDrones = () => {
-  const [illegalDrones, setIllegalDrones] = useState([]);
-  const [temp, setTemp] = useState(0);
-  useEffect(() => {
-    setInterval(() => {
-      setTemp((prevTemp) => prevTemp + 1);
-    }, 2000);
-  }, []);
-  useEffect(() => {
-    fetchAPI();
-  }, [temp]);
-  const fetchAPI = async () => {
-    const data = await axios.get('http://localhost:5000/api', {
-      'Content-Type': 'application/xml; charset=utf-8',
-    });
-    const parsedData = await new XMLParser().parseFromString(data.data);
-    calculateDistance(
-      parsedData.children[1].children.length,
-      parsedData.children[1].children
-    );
-  };
+   let port = '';
+   if (process.env.NODE_ENV === 'development') {
+     port = 'http://localhost:5000';
+   }
+   const [illegalDrones, setIllegalDrones] = useState([]);
+   const [temp, setTemp] = useState(0);
+   useEffect(() => {
+     setInterval(() => {
+       setTemp((prevTemp) => prevTemp + 1);
+     }, 2000);
+   }, []);
+   useEffect(() => {
+     fetchAPI();
+   }, [temp]);
+   const fetchAPI = async () => {
+     const data = await axios.get(`${port}/api`, {
+       'Content-Type': 'application/xml; charset=utf-8',
+     });
+     const parsedData = await new XMLParser().parseFromString(data.data);
+     calculateDistance(
+       parsedData.children[1].children.length,
+       parsedData.children[1].children
+     );
+   };
 
   const calculateDistance = (lengthOfArray, droneData) => {
     let illegalDroneNames = [...illegalDrones];

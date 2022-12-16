@@ -4,6 +4,10 @@ let shiftedDrones = [];
 let ownersAndDrones = [];
 
 const DisplayNameOfDrone = ({ drones }) => {
+  let port = '';
+  if (process.env.NODE_ENV === 'development') {
+    port = 'http://localhost:5000';
+  }
   const [pilotAndDistance, setPilotAndDistance] = useState([]);
   useEffect(() => {
     shiftingDrones();
@@ -28,7 +32,7 @@ const DisplayNameOfDrone = ({ drones }) => {
   };
   const fetchAPI = async (droneId) => {
     const ownerInfo = await axios.get(
-      `http://localhost:5000/owners?droneID=${droneId.idOfDrone}`
+      `${port}/owners?droneID=${droneId.idOfDrone}`
     );
     if (!ownersAndDrones.some((el) => el.id === droneId.idOfDrone)) {
       ownersAndDrones.push({
