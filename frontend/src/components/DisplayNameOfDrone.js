@@ -55,7 +55,7 @@ const DisplayNameOfDrone = ({ drones }) => {
       let duration =
         (dateNow.getTime() - pilotAndDistance[i].time.getTime()) / 1000;
 
-      if (duration > 180) {
+      if (duration > 60) {
         console.log(duration);
         ownersAndDrones.splice(i, 1);
         console.log(ownersAndDrones);
@@ -68,7 +68,7 @@ const DisplayNameOfDrone = ({ drones }) => {
     <div>
       {pilotAndDistance.map((drone) => {
         return (
-          <div key={drone.id}>
+          <div key={drone.id} className="datadisplaymain">
             {drone.ownerInfo.data.firstName} {drone.ownerInfo.data.lastName}{' '}
             {drone.time.getHours()}:{drone.time.getMinutes()} and closest
             distance is = {drone.distance}, email: {drone.ownerInfo.data.email},

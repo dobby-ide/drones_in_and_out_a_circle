@@ -3,7 +3,6 @@ import axios from 'axios';
 import XMLParser from 'react-xml-parser';
 import DisplayNameOfDrone from './DisplayNameOfDrone';
 const FetchDrones = () => {
-  const [numberOfDrones, setNumberOfDrones] = useState(0);
   const [illegalDrones, setIllegalDrones] = useState([]);
   const [temp, setTemp] = useState(0);
   useEffect(() => {
@@ -21,7 +20,6 @@ const FetchDrones = () => {
     const parsedData = await new XMLParser().parseFromString(data.data);
 
     //setDroneData(parsedData.children[1].children);
-    setNumberOfDrones(parsedData.children[1].children.length); //drones running around at the moment
     //analize which drone is inside the circle radius
     //loops in the array of drones ==> parsedData.children[1].children[maxlength]
     calculateDistance(
@@ -48,7 +46,7 @@ const FetchDrones = () => {
         if (!found) {
           illegalDroneNames.push({
             idOfDrone: droneData[i].children[0].value,
-            distance: distance,
+            distance: Math.round(distance) / 100,
           });
           //console.log('too close', illegalDroneNames);
         }
