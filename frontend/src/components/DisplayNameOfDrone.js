@@ -58,7 +58,7 @@ const DisplayNameOfDrone = ({ drones }) => {
       let duration =
         (dateNow.getTime() - pilotAndDistance[i].time.getTime()) / 1000;
 
-      if (duration > 60) {
+      if (duration > 600) {
         console.log(duration);
         ownersAndDrones.splice(i, 1);
         console.log(ownersAndDrones);
