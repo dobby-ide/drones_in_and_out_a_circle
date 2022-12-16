@@ -5,12 +5,13 @@ const app = express();
 const API_URL = 'https://assignments.reaktor.com/birdnest/drones';
 const API_OWNERS = 'https://assignments.reaktor.com/birdnest/pilots';
 app.use(cors());
+app.use(express.static('frontend/build'));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 app.use(express.json());
-app.use(express.static('frontend/build'));
+
 app.get('/api', (req, res) => {
   request({ url: `${API_URL}` }, (error, response, body) => {
     if (!error && response.statusCode == 200) {
